@@ -7,31 +7,54 @@ const { lang = 'ja' } = Astro.props;
 
 const content = {
 	ja: {
-		title: 'About',
-		text: 'ここに自己紹介文が入ります。写真の右側に文章を配置する2カラムレイアウトです。あなたの経歴、スキル、情熱について自由に記述できます。',
-		image: 'https://images.pexels.com/photos/1181269/pexels-photo-1181269.jpeg?auto=compress&cs=tinysrgb&w=800',
-		imageAlt: 'プロフィール画像'
-	},
-	en: {
-		title: 'About',
-		text: 'This is where your introduction goes. A two-column layout with text positioned to the right of the photo. Feel free to describe your background, skills, and passion.',
-		image: 'https://images.pexels.com/photos/1181269/pexels-photo-1181269.jpeg?auto=compress&cs=tinysrgb&w=800',
-		imageAlt: 'Profile image'
+		title: 'About'
 	}
 };
-
-const data = lang === 'ja' ? content.ja : content.en;
 ---
 
 <section id="about">
 	<div class="container">
-		<h2>{data.title}</h2>
-		<div class="about-content">
-			<div class="about-image">
-				<img src={data.image} alt={data.imageAlt} />
+		<h2>{content.ja.title}</h2>
+		
+		<div class="profiles-grid">
+			<!-- おかだ かいり セクション -->
+			<div class="profile-card">
+				<div class="profile-image">
+					<img src="/aboutkairisq250.jpg" alt="おかだ かいり プロフィール画像" />
+				</div>
+				<div class="profile-info">
+					<h3 class="name-large">おかだかいり。</h3>
+					<div class="bio-content">
+						<p>
+							広島県生まれ。<br />
+							神戸市外国語大学外国語学部卒業（2010.3）、大阪大学大学院文学研究科アート・メディア論修了（2013.3）、Amazing School JUR 卒業（2023.3）。
+						</p>
+						<p>大学在学中から舞台役者として関西を中心に活動。2013 年「創作工房 こねこの翼」を屋号に定め舞台衣装作家としての仕事も開始。さまざまな舞台で、衣装デザイン・製作・コーディネートを行う。</p>
+						<p>
+							造形セミナーに通う中で、舞台に活かせる特殊造形・特殊メイクの技術を学びたいと思い Amazing School JUR に入学。<br />
+							卒業後はテーマパーク関連の仕事を中心に衣装や特殊メイク・造形のさまざまなアトリエにスポット勤務、個人でも衣装や小道具等の仕事を受けている。またハンドメイド雑貨やフィギュアの販売も行うなど雑多に活動している。
+						</p>
+						<p>趣味は勉強と何の役に立つかわからない資格の取得。気になることはとことん調べるタイプ。衣装・造形ともに和と動物をモチーフにした表現を得意とする。</p>
+					</div>
+				</div>
 			</div>
-			<div class="about-text">
-				<p>{data.text}</p>
+
+			<!-- 鈴木 まなみ セクション -->
+			<div class="profile-card">
+				<div class="profile-image">
+					<img src="/aboutmanamisq250.jpg" alt="鈴木 まなみ プロフィール画像" />
+				</div>
+				<div class="profile-info">
+					<h3 class="name-large">鈴木 まなみ</h3>
+					<div class="bio-content">
+						<p>
+							栃木県生まれ、山口県育ち。<br />
+							ECCアーティスト専門学校 特殊メイクコース卒業(2013.3)。<br />
+							着ぐるみ制作会社、特殊メイク・造形会社にて映画・ドラマ・舞台・テーマパーク向けの特殊メイク・造形制作に携わる。
+						</p>
+						<p>制約の多い現場や前例の少ない制作においても、創意工夫と試行錯誤を厭わずこだわりを形にします。</p>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -41,6 +64,7 @@ const data = lang === 'ja' ? content.ja : content.en;
 	.container {
 		max-width: var(--max-width);
 		margin: 0 auto;
+		padding: 0 20px;
 	}
 
 	h2 {
@@ -50,49 +74,71 @@ const data = lang === 'ja' ? content.ja : content.en;
 		letter-spacing: -0.03em;
 	}
 
-	.about-content {
+	.profiles-grid {
 		display: grid;
-		grid-template-columns: 1fr;
-		gap: calc(var(--spacing-unit) * 8);
-		align-items: center;
+		grid-template-columns: 1fr; /* スマホでは1列 */
+		gap: 60px;
+		align-items: start;
 	}
 
-	.about-image {
+	.profile-card {
+		display: flex;
+		flex-direction: column;
+		gap: 30px;
+	}
+
+		.profile-image {
+		width: 83%;           /* 100%から83%に変更 */
+		margin: 0 ;       /* 左右中央に配置 */
+		aspect-ratio: 1 / 1;  /* 正方形を維持 */
 		overflow: hidden;
 		border-radius: 2px;
 	}
 
-	.about-image img {
+	.profile-image img {
 		width: 100%;
-		height: auto;
+		height: 100%;
 		object-fit: cover;
 		display: block;
 		transition: transform 0.6s ease;
 	}
 
-	.about-image:hover img {
-		transform: scale(1.02);
+	.profile-card:hover .profile-image img {
+		transform: scale(1.03);
 	}
 
-	.about-text {
-		font-size: 17px;
-		line-height: 1.9;
-		opacity: 0.95;
+	.name-large {
+		font-size: 32px;
+		font-weight: bold;
+		margin: 0 0 20px 0;
+		letter-spacing: 0.05em;
+		color: var(--color-text);
+		border-bottom: 2px solid var(--color-primary);
+		display: inline-block;
+		padding-bottom: 5px;
 	}
 
-	.about-text p {
-		margin: 0;
+	.bio-content p {
+		font-size: 15px;
+		line-height: 1.8;
+		margin-bottom: 1.2em;
+		opacity: 0.9;
 	}
 
+	/* PCレイアウト（2026年のモダンなWebデザイン基準） */
 	@media (min-width: 768px) {
-		.about-content {
-			grid-template-columns: 1fr 1fr;
-			gap: calc(var(--spacing-unit) * 10);
+		.profiles-grid {
+			grid-template-columns: 1fr 1fr; /* PCでは2列 */
+			gap: 40px;
 		}
 
 		h2 {
 			font-size: 64px;
-			margin-bottom: calc(var(--spacing-unit) * 12);
+			margin-bottom: 80px;
+		}
+
+		.name-large {
+			font-size: 36px;
 		}
 	}
 </style>
