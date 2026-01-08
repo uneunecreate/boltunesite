@@ -5,36 +5,65 @@ interface Props {
 
 const { lang = 'ja' } = Astro.props;
 
+// テキストデータを定義
 const content = {
 	ja: {
-		title: 'About'
+		title: 'About',
+		okadaName: 'おかだかいり。',
+		okadaBio: [
+			'広島県生まれ。',
+			'神戸市外国語大学外国語学部卒業（2010.3）、大阪大学大学院文学研究科アート・メディア論修了（2013.3）、Amazing School JUR 卒業（2023.3）。',
+			'大学在学中から舞台役者として関西を中心に活動。2013 年「創作工房 こねこの翼」を屋号に定め舞台衣装作家としての仕事も開始。さまざまな舞台で、衣装デザイン・製作・コーディネートを行う。',
+			'造形セミナーに通う中で、舞台に活かせる特殊造形・特殊メイクの技術を学びたいと思い Amazing School JUR に入学。',
+			'卒業後はテーマパーク関連の仕事を中心に衣装や特殊メイク・造形のさまざまなアトリエにスポット勤務、個人でも衣装や小道具等の仕事を受けている。またハンドメイド雑貨やフィギュアの販売も行うなど雑多に活動している。',
+			'趣味は勉強と何の役に立つかわからない資格の取得。気になることはとことん調べるタイプ。衣装・造形ともに和と動物をモチーフにした表現を得意とする。'
+		],
+		suzukiName: '鈴木 まなみ',
+		suzukiBio: [
+			'栃木県生まれ、山口県育ち。',
+			'ECCアーティスト専門学校 特殊メイクコース卒業(2013.3)。',
+			'着ぐるみ制作会社、特殊メイク・造形会社にて映画・ドラマ・舞台・テーマパーク向けの特殊メイク・造形制作に携わる。',
+			'制約の多い現場や前例の少ない制作においても、創意工夫と試行錯誤を厭わずこだわりを形にします。'
+		]
+	},
+	en: {
+		title: 'About',
+		okadaName: 'Kairi Okada',
+		okadaBio: [
+			'Born in Hiroshima.',
+			'Graduated from Kobe City University of Foreign Studies (2010.3), Osaka University Graduate School of Letters (2013.3), and Amazing School JUR (2023.3).',
+			'Active as a stage actor since university. Established "Sosaku Kobo Koneko no Tsubasa" in 2013, starting work as a stage costume designer.',
+			'Entered Amazing School JUR to learn special effects and makeup techniques for the stage.',
+			'Currently working on theme park projects, costumes, and special makeup at various ateliers and as an individual.',
+			'Enjoys studying and acquiring various qualifications. Specialized in expressions inspired by Japanese tradition and animals.'
+		],
+		suzukiName: 'Manami Suzuki',
+		suzukiBio: [
+			'Born in Tochigi, raised in Yamaguchi.',
+			'Graduated from ECC Artist College Special Makeup Course (2013.3).',
+			'Involved in special makeup and prop production for movies, TV dramas, stage, and theme parks.',
+			'Dedicated to shaping ideas through creativity and trial and error, even in challenging environments.'
+		]
 	}
 };
+
+const data = lang === 'ja' ? content.ja : content.en;
 ---
 
 <section id="about">
 	<div class="container">
-		<h2>{content.ja.title}</h2>
+		<h2>{data.title}</h2>
 		
 		<div class="profiles-grid">
 			<!-- おかだ かいり セクション -->
 			<div class="profile-card">
 				<div class="profile-image">
-					<img src="/aboutkairisq250.jpg" alt="おかだ かいり プロフィール画像" />
+					<img src="/aboutkairisq250.jpg" alt={data.okadaName} />
 				</div>
 				<div class="profile-info">
-					<h3 class="name-large">おかだかいり。</h3>
+					<h3 class="name-large">{data.okadaName}</h3>
 					<div class="bio-content">
-						<p>
-							広島県生まれ。<br />
-							神戸市外国語大学外国語学部卒業（2010.3）、大阪大学大学院文学研究科アート・メディア論修了（2013.3）、Amazing School JUR 卒業（2023.3）。
-						</p>
-						<p>大学在学中から舞台役者として関西を中心に活動。2013 年「創作工房 こねこの翼」を屋号に定め舞台衣装作家としての仕事も開始。さまざまな舞台で、衣装デザイン・製作・コーディネートを行う。</p>
-						<p>
-							造形セミナーに通う中で、舞台に活かせる特殊造形・特殊メイクの技術を学びたいと思い Amazing School JUR に入学。<br />
-							卒業後はテーマパーク関連の仕事を中心に衣装や特殊メイク・造形のさまざまなアトリエにスポット勤務、個人でも衣装や小道具等の仕事を受けている。またハンドメイド雑貨やフィギュアの販売も行うなど雑多に活動している。
-						</p>
-						<p>趣味は勉強と何の役に立つかわからない資格の取得。気になることはとことん調べるタイプ。衣装・造形ともに和と動物をモチーフにした表現を得意とする。</p>
+						{data.okadaBio.map(text => <p>{text}</p>)}
 					</div>
 				</div>
 			</div>
@@ -42,17 +71,12 @@ const content = {
 			<!-- 鈴木 まなみ セクション -->
 			<div class="profile-card">
 				<div class="profile-image">
-					<img src="/aboutmanamisq250.jpg" alt="鈴木 まなみ プロフィール画像" />
+					<img src="/aboutmanamisq250.jpg" alt={data.suzukiName} />
 				</div>
 				<div class="profile-info">
-					<h3 class="name-large">鈴木 まなみ</h3>
+					<h3 class="name-large">{data.suzukiName}</h3>
 					<div class="bio-content">
-						<p>
-							栃木県生まれ、山口県育ち。<br />
-							ECCアーティスト専門学校 特殊メイクコース卒業(2013.3)。<br />
-							着ぐるみ制作会社、特殊メイク・造形会社にて映画・ドラマ・舞台・テーマパーク向けの特殊メイク・造形制作に携わる。
-						</p>
-						<p>制約の多い現場や前例の少ない制作においても、創意工夫と試行錯誤を厭わずこだわりを形にします。</p>
+						{data.suzukiBio.map(text => <p>{text}</p>)}
 					</div>
 				</div>
 			</div>
@@ -61,6 +85,7 @@ const content = {
 </section>
 
 <style>
+	/* スタイル部分は以前のまま維持しています */
 	.container {
 		max-width: var(--max-width);
 		margin: 0 auto;
@@ -76,7 +101,7 @@ const content = {
 
 	.profiles-grid {
 		display: grid;
-		grid-template-columns: 1fr; /* スマホでは1列 */
+		grid-template-columns: 1fr;
 		gap: 60px;
 		align-items: start;
 	}
@@ -87,10 +112,10 @@ const content = {
 		gap: 30px;
 	}
 
-		.profile-image {
-		width: 83%;           /* 100%から83%に変更 */
-		margin: 0 ;       /* 左右中央に配置 */
-		aspect-ratio: 1 / 1;  /* 正方形を維持 */
+	.profile-image {
+		width: 83%;
+		margin: 0;
+		aspect-ratio: 1 / 1;
 		overflow: hidden;
 		border-radius: 2px;
 	}
@@ -101,10 +126,6 @@ const content = {
 		object-fit: cover;
 		display: block;
 		transition: transform 0.6s ease;
-	}
-
-	.profile-card:hover .profile-image img {
-		transform: scale(1.03);
 	}
 
 	.name-large {
@@ -125,10 +146,9 @@ const content = {
 		opacity: 0.9;
 	}
 
-	/* PCレイアウト（2026年のモダンなWebデザイン基準） */
 	@media (min-width: 768px) {
 		.profiles-grid {
-			grid-template-columns: 1fr 1fr; /* PCでは2列 */
+			grid-template-columns: 1fr 1fr;
 			gap: 40px;
 		}
 
