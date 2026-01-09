@@ -1,6 +1,6 @@
 ---
 interface Props {
-	lang?: string;
+	lang?: 'ja' | 'en';
 }
 
 const { lang = 'ja' } = Astro.props;
@@ -9,6 +9,23 @@ const { lang = 'ja' } = Astro.props;
 const content = {
 	ja: {
 		title: 'About',
+		unitName: 'une une.',
+		intro: [
+			'おかだかいり。と鈴木まなみからなる造形ユニット、うねうね。',
+
+			'兎と猫が好きなふたりです。'
+　　　　　　　　　
+		],
+		services: [
+			{
+				label: '〔特殊メイク・特殊造形〕',
+				text: '傷メイク、人体・動物・武器などのダミー、キャラクター制作。シリコン・ウレタン・FRPなど様々な素材を用いてリアルな質感表現が可能です。プロップ制作、小道具、3Dプリンターなど用いたフィギュア制作。'
+			},
+			{
+				label: '〔着ぐるみ・マスク・コスチューム〕',
+				text: '動物マスクや、甲冑や特殊装飾のある衣装制作。デザインと動きやすさ・耐久性を両立させた設計・制作をいたします。'
+			}
+		],
 		okadaName: 'おかだかいり。',
 		okadaBio: [
 			'広島県生まれ。',
@@ -18,6 +35,20 @@ const content = {
 			'卒業後はテーマパーク関連の仕事を中心に衣装や特殊メイク・造形のさまざまなアトリエにスポット勤務、個人でも衣装や小道具等の仕事を受けている。またハンドメイド雑貨やフィギュアの販売も行うなど雑多に活動している。',
 			'趣味は勉強と何の役に立つかわからない資格の取得。気になることはとことん調べるタイプ。衣装・造形ともに和と動物をモチーフにした表現を得意とする。'
 		],
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 		suzukiName: '鈴木 まなみ',
 		suzukiBio: [
 			'栃木県生まれ、山口県育ち。',
@@ -28,6 +59,21 @@ const content = {
 	},
 	en: {
 		title: 'About',
+		unitName: 'une une.',
+		intro: [
+			'A creative unit consisting of Kairi Okada and Manami Suzuki.',
+			'We both love rabbits and cats.'
+		],
+		services: [
+			{
+				label: '[Special Makeup & Sculpting]',
+				text: 'Specializing in wound makeup, anatomical/animal/weapon dummies, and character creation. We achieve realistic textures using materials like silicone, urethane, and FRP. We also offer prop making and 3D-printed figure production.'
+			},
+			{
+				label: '[Mascot Suits, Masks & Costumes]',
+				text: 'Creation of animal masks, armor, and specialized costume decorations. We design and produce pieces that balance aesthetic impact with mobility and durability.'
+			}
+		],
 		okadaName: 'Kairi Okada',
 		okadaBio: [
 			'Born in Hiroshima.',
@@ -55,6 +101,21 @@ const data = lang === 'ja' ? content.ja : content.en;
 <section id="about">
 	<div class="container">
 		<h2>{data.title}</h2>
+
+		<!-- ユニット紹介セクション -->
+		<div class="unit-intro">
+			<h3>{data.unitName}</h3>
+			{data.intro.map(text => <p>{text}</p>)}
+			
+			<div class="services-grid">
+				{data.services.map(service => (
+					<div class="service-item">
+						<h4>{service.label}</h4>
+						<p>{service.text}</p>
+					</div>
+				))}
+			</div>
+		</div>
 		
 		<div class="profiles-grid">
 			<!-- おかだ かいり セクション -->
@@ -88,22 +149,53 @@ const data = lang === 'ja' ? content.ja : content.en;
 
 <style>
 	.container {
-		max-width: var(--max-width);
+		max-width: 1200px; /* 必要に応じて調整 */
 		margin: 0 auto;
 		padding: 0 20px;
 	}
 
 	h2 {
 		font-size: 48px;
-		margin-bottom: calc(var(--spacing-unit) * 10);
-		text-align: center;
+		margin-bottom: 60px;
+		text-align: ;
 		letter-spacing: -0.03em;
+	}
+
+	.unit-intro {
+		//text-align: center;
+                margin-top: 60px;    /* 上にスペースを作る */
+		margin-bottom: 80px;
+		max-width: 800px;
+		margin-left: ;
+		margin-right: auto;
+	}
+
+	.unit-intro h3 {
+		font-size: 30px;
+                margin-top: 60px;    /* 上にスペースを作る */
+		margin-bottom: 20px;
+	}
+
+	//.services-grid {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 50px;
+		margin-top: 80px;
+		text-align: left;
+	}
+
+	.service-item h4 {
+		font-weight: bold;
+                margin-top: 40px;    /* 上にスペースを作る */
+		margin-bottom: 3px;
+		color: var(--color-primary, #fff);
 	}
 
 	.profiles-grid {
 		display: grid;
 		grid-template-columns: 1fr;
-		gap: 60px;
+		gap: 100px;
+                margin-bottom: 50px;
 		align-items: start;
 	}
 
@@ -114,8 +206,10 @@ const data = lang === 'ja' ? content.ja : content.en;
 	}
 
 	.profile-image {
-		width: 83%;
-		margin: 0;
+		width: 100%;
+		max-width: 330px;
+		margin: 0 ;
+                margin-top: 60px;    /* 上にスペースを作る */
 		aspect-ratio: 1 / 1;
 		overflow: hidden;
 		border-radius: 2px;
@@ -126,16 +220,14 @@ const data = lang === 'ja' ? content.ja : content.en;
 		height: 100%;
 		object-fit: cover;
 		display: block;
-		transition: transform 0.6s ease;
 	}
 
 	.name-large {
-		font-size: 32px;
+		font-size: 15px;
 		font-weight: bold;
 		margin: 0 0 20px 0;
 		letter-spacing: 0.05em;
-		color: var(--color-text);
-		border-bottom: 2px solid var(--color-primary);
+		
 		display: inline-block;
 		padding-bottom: 5px;
 	}
@@ -148,8 +240,12 @@ const data = lang === 'ja' ? content.ja : content.en;
 	}
 
 	@media (min-width: 768px) {
+		.services-grid {
+			grid-template-columns: 1fr;
+		}
+
 		.profiles-grid {
-			grid-template-columns: 1fr 1fr;
+			grid-template-columns: 1fr;
 			gap: 40px;
 		}
 
@@ -159,7 +255,7 @@ const data = lang === 'ja' ? content.ja : content.en;
 		}
 
 		.name-large {
-			font-size: 36px;
+			font-size: 30px;
 		}
 	}
 </style>
