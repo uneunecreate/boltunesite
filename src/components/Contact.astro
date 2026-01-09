@@ -34,7 +34,8 @@ const data = lang === 'ja' ? content.ja : content.en;
 <section id="contact">
 	<div class="container">
 		<h2>{data.title}</h2>
-		<form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+		<!-- action="/success" を追加しました -->
+		<form name="contact" method="POST" action="/success" data-netlify="true" netlify-honeypot="bot-field">
 			<input type="hidden" name="form-name" value="contact" />
 			<p class="hidden">
 				<label>
