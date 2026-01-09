@@ -1,7 +1,7 @@
 ---
 title: "Deep Ones"
 titleEn: "Deep Ones"
-image: "/DeepOnes.jpg"
+image: "/img_gallery/DeepOnes.jpg"
 order: 5
 description: "シリコン素材を使用した特殊メイク。魚人。"
 descriptionEn: "A half-helmet costume for a cat, created for a cat role."
