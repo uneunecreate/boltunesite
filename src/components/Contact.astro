@@ -8,7 +8,7 @@ const { lang = 'ja' } = Astro.props;
 const content = {
 	ja: {
 		title: 'Contact',
-　　　　　　　　　'お仕事のご依頼、各種お問い合わせはこちらからどうぞ。',
+		description: 'お仕事のご依頼、各種お問い合わせはこちらからどうぞ。',
 		nameLabel: 'お名前',
 		emailLabel: 'E-mail',
 		messageLabel: 'メッセージ',
@@ -19,7 +19,7 @@ const content = {
 	},
 	en: {
 		title: 'Contact',
-                'For work inquiries and various consultations, please contact us here.',
+		description: 'For work inquiries and various consultations, please contact us here.',
 		nameLabel: 'Name',
 		emailLabel: 'Email',
 		messageLabel: 'Message',
@@ -33,10 +33,12 @@ const content = {
 const data = lang === 'ja' ? content.ja : content.en;
 ---
 
+
 <section id="contact">
 	<div class="container">
 		<h2>{data.title}</h2>
 		<!-- action="/success" を追加しました -->
+                <p style="text-align: center; margin-bottom: 2rem;">{data.description}</p> <!-- この行を追加 -->
 		<form name="contact" method="POST" action="/success" data-netlify="true" netlify-honeypot="bot-field">
 			<input type="hidden" name="form-name" value="contact" />
 			<p class="hidden">
