@@ -19,19 +19,17 @@ const content = {
 			'制作のご相談やお見積もりは、お問い合わせフォームよりお気軽にご連絡ください。'
 		],
 		services: [
-            // ↑ ここにコロン「:」があること、また「intro」の閉じカッコの後に
-            // カンマ「,」があることを確認してください。
-
 			{
 				label: '〔特殊メイク・特殊造形〕',
-				text: '傷傷メイク、人体・動物・武器などのダミー制作、キャラクター造形。',
-                                      'シリコン・ウレタン・FRPなど様々な素材を用い、リアルな質感を表現します。プロップ（小道具）制作や、3Dプリンターを活用したフィギュア制作など。'
+				// 修正点1：カンマで区切られた2つの文字列を1つに結合しました
+				text: '傷傷メイク、人体・動物・武器などのダミー制作、キャラクター造形。シリコン・ウレタン・FRPなど様々な素材を用い、リアルな質感を表現します。プロップ（小道具）制作や、3Dプリンターを活用したフィギュア制作など。'
 			},
 			{
 				label: '〔着ぐるみ・マスク・コスチューム〕',
 				text: '動物マスク、甲冑衣装、特殊装飾を伴う衣装制作。デザイン性だけでなく、動きやすさや耐久性を両立させた設計・制作をいたします。'
-			}
+			} // 修正点2：末尾の不要なシングルクォーテーション「'」を削除しました
 		],
+
 		okadaName: 'おかだかいり。',
 		okadaBio: [
 			'広島県生まれ。',
@@ -61,7 +59,7 @@ const content = {
 			'ECCアーティスト専門学校 特殊メイクコース卒業(2013.3)。',
 			'着ぐるみ制作会社、特殊メイク・特殊造形会社にて映画・ドラマ・舞台・テーマパーク向けの制作に携わってきました。',
 			'制約が多い現場や前例のない制作においても、創意工夫と試行錯誤でデザインやアイデアを実現します。'
-		]
+		],
 	},
 	en: {
 		title: 'About',
@@ -97,7 +95,7 @@ const content = {
 			'Graduated from ECC Artist College Special Makeup Course (2013.3).',
 			'I have been involved in productions for movies, dramas, stage plays, and theme parks at companies specializing in mascot suit production, special makeup, and special effects.',
 			'Even in productions with many constraints or unprecedented challenges, I bring designs and ideas to life through creativity and trial-and-error!'
-		]
+		],
 	}
 };
 
